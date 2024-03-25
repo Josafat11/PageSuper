@@ -24,7 +24,7 @@ const RegistroPuerta = () => {
     };
 
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL2 + "/petdoor/", {
+      const response = await fetch(CONFIGURACIONES.BASEURL + "/petdoor/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

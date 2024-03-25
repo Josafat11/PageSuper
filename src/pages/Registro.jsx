@@ -88,7 +88,7 @@ const Registro = () => {
           respuestaSecreta
         });
         
-        const response = await fetch(CONFIGURACIONES.BASEURL2 + "/auth/signup", {
+        const response = await fetch(CONFIGURACIONES.BASEURL + "/auth/signup", {
           method: "POST",
           headers: {
             'Content-Type': 'application/json'

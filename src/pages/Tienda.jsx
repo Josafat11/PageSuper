@@ -14,7 +14,7 @@ const Tienda = () => {
   useEffect(() => {
     const obtenerProductos = async () => {
       try {
-        const response = await fetch(CONFIGURACIONES.BASEURL2 + "/products/");
+        const response = await fetch(CONFIGURACIONES.BASEURL + "/products/");
         if (response.ok) {
           const data = await response.json();
           setProductos(data);
