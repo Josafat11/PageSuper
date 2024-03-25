@@ -13,7 +13,7 @@ const Contacto = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL2 + "/comment/", {
+      const response = await fetch(CONFIGURACIONES.BASEURL + "/comment/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const Contacto = () => {
   useEffect(() => {
     const fetchContactDetails = async () => {
       try {
-        const response = await fetch(CONFIGURACIONES.BASEURL2 + "/contact/");
+        const response = await fetch(CONFIGURACIONES.BASEURL + "/contact/");
         if (response.ok) {
           const data = await response.json();
           setContactDetails(data);

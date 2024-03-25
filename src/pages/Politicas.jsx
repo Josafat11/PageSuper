@@ -7,7 +7,7 @@ const Politicas = () => {
   useEffect(() => {
     const fetchPoliticas = async () => {
       try {
-        const response = await fetch(CONFIGURACIONES.BASEURL2 + "/politicas/", {
+        const response = await fetch(CONFIGURACIONES.BASEURL + "/politicas/", {
           method: "GET",
           headers: {
             'Content-Type': 'application/json'

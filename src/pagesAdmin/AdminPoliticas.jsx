@@ -14,7 +14,7 @@ const AdminPoliticas = () => {
   useEffect(() => {
     const fetchPoliticas = async () => {
       try {
-        const response = await fetch(CONFIGURACIONES.BASEURL2 + "/politicas/", {
+        const response = await fetch(CONFIGURACIONES.BASEURL + "/politicas/", {
           method: "GET",
           headers: {
             'Content-Type': 'application/json'
@@ -35,7 +35,7 @@ const AdminPoliticas = () => {
 
   const handleDelete = async (politicaId) => {
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL2 + `/politicas/${politicaId}`, {
+      const response = await fetch(CONFIGURACIONES.BASEURL + `/politicas/${politicaId}`, {
         method: "DELETE",
         headers: {
           'Content-Type': 'application/json'
@@ -69,7 +69,7 @@ const AdminPoliticas = () => {
 
   const handleEditSubmit = async (updatedPoliticaData) => {
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL2 + `/politicas/${editPolitica._id}`, {
+      const response = await fetch(CONFIGURACIONES.BASEURL + `/politicas/${editPolitica._id}`, {
         method: "PUT",
         headers: {
           'Content-Type': 'application/json'
@@ -95,7 +95,7 @@ const AdminPoliticas = () => {
 
   const handleAddPolitica = async () => {
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL2 + '/politicas/', {
+      const response = await fetch(CONFIGURACIONES.BASEURL + '/politicas/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

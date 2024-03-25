@@ -8,7 +8,7 @@ const Nosotros = () => {
   useEffect(() => {
     const fetchNosotrosInfo = async () => {
       try {
-        const response = await fetch(CONFIGURACIONES.BASEURL2 + "/nosotros/");
+        const response = await fetch(CONFIGURACIONES.BASEURL + "/nosotros/");
         if (response.ok) {
           const data = await response.json();
           setNosotrosInfo(data);
