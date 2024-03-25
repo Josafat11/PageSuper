@@ -11,7 +11,7 @@ const Footer = () => {
   useEffect(() => {
     const fetchContactDetails = async () => {
       try {
-        const response = await fetch(CONFIGURACIONES.BASEURL + "/contact/");
+        const response = await fetch(CONFIGURACIONES.BASEURL2 + "/contact/");
         if (response.ok) {
           const data = await response.json();
           setContactDetails(data);

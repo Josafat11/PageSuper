@@ -14,7 +14,7 @@ const AdminFaq = () => {
 
   const fetchFaqs = async () => {
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL + "/faq/");
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + "/faq/");
       if (response.ok) {
         const data = await response.json();
         setFaqs(data);
@@ -31,7 +31,7 @@ const AdminFaq = () => {
     try {
       let response;
       if (editId) {
-        response = await fetch(CONFIGURACIONES.BASEURL + `/faq/${editId}`, {
+        response = await fetch(CONFIGURACIONES.BASEURL2 + `/faq/${editId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -42,7 +42,7 @@ const AdminFaq = () => {
           }),
         });
       } else {
-        response = await fetch(CONFIGURACIONES.BASEURL + "/faq/", {
+        response = await fetch(CONFIGURACIONES.BASEURL2 + "/faq/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -68,7 +68,7 @@ const AdminFaq = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL + `/faq/${id}`, {
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + `/faq/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {

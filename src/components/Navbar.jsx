@@ -10,7 +10,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/");
+    navigate("/")
   };
 
   return (
@@ -128,6 +128,24 @@ const Navbar = () => {
                     to="/tienda"
                   >
                     Tienda
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    activeClassName="text-green-500"
+                    className="text-white hover:text-green-300 hover:font-bold"
+                    to="/petdoor"
+                  >
+                    Dispositivo IOT
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    activeClassName="text-green-500"
+                    className="text-white hover:text-green-300 hover:font-bold"
+                    to="/perfil"
+                  >
+                    Perfil
                   </NavLink>
                 </li>
                 {/* Si el usuario es un administrador, mostrar la opción "Admin" */}

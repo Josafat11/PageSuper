@@ -1,10 +1,13 @@
-import { Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import React from "react";
+import Navbar from "../components/Navbar"; // Importa tu componente Navbar
+
 
 const LayoutPublic = () => { 
     return (
-        <Navbar />
+        <div>
+            <Navbar />
+        </div>
     );
- }
+}
 
- export default LayoutPublic;
+export default LayoutPublic;

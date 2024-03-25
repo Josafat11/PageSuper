@@ -16,7 +16,7 @@ const AdminContacto = () => {
 
   const fetchContactDetails = async () => {
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL + "/contact/");
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + "/contact/");
       if (response.ok) {
         const data = await response.json();
         console.log(data);
@@ -36,7 +36,7 @@ const AdminContacto = () => {
   
   const handleEditSubmit = async () => {
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL + '/contact/', {
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + '/contact/', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'

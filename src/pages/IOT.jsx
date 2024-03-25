@@ -8,7 +8,7 @@ const DispositivoIoT = () => {
 
   const fetchPetDoorData = async () => {
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL + "/petdoor/65f3aa4b4a8f1b582066b244");
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + "/petdoor/65f3aa4b4a8f1b582066b244");
       if (response.ok) {
         const data = await response.json();
         setPetDoorData(data);
@@ -47,7 +47,7 @@ const DispositivoIoT = () => {
         return;
       }
 
-      const response = await fetch(CONFIGURACIONES.BASEURL + "/petdoor/update-closing-time/65f3aa4b4a8f1b582066b244", {
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + "/petdoor/update-closing-time/65f3aa4b4a8f1b582066b244", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

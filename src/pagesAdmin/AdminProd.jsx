@@ -19,7 +19,7 @@ const AdminProd = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(CONFIGURACIONES.BASEURL + "/products/", {
+        const response = await fetch(CONFIGURACIONES.BASEURL2 + "/products/", {
           method: "GET",
           headers: {
             'Content-Type': 'application/json'
@@ -51,7 +51,7 @@ const AdminProd = () => {
   
   const handleDelete = async (productId) => {
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL + `/products/${productId}`, {
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + `/products/${productId}`, {
         method: "DELETE",
         headers: {
           'Content-Type': 'application/json'
@@ -88,7 +88,7 @@ const AdminProd = () => {
 
   const handleEditSubmit = async (updatedProductData) => {
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL + `/products/${editProduct._id}`, {
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + `/products/${editProduct._id}`, {
         method: "PUT",
         headers: {
           'Content-Type': 'application/json'
@@ -126,7 +126,7 @@ const AdminProd = () => {
         console.log(pair[0]+ ', ' + pair[1]); 
       }
       
-      const response = await fetch(CONFIGURACIONES.BASEURL + '/products/', {
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + '/products/', {
         method: 'POST',
         body: formData, // Envía el formData en lugar de JSON.stringify(newProductData)
       });

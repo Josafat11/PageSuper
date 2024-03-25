@@ -37,7 +37,7 @@ const Login = () => {
     }
 
     try {
-      const res = await fetch(CONFIGURACIONES.BASEURL + "/auth/signin", {
+      const res = await fetch(CONFIGURACIONES.BASEURL2 + "/auth/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -63,7 +63,7 @@ const Login = () => {
         } else {
           console.log(json.role)
           console.log(json)
-          navigate('/Home');
+          navigate('/');
         }
       } else {
         Swal.fire({

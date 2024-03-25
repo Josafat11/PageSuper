@@ -15,7 +15,7 @@ const ForgotPassword = () => {
     event.preventDefault();
 
     try {
-      const res = await fetch(CONFIGURACIONES.BASEURL + "/auth/forgotPasswordEmail", {
+      const res = await fetch(CONFIGURACIONES.BASEURL2 + "/auth/forgotPasswordEmail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
