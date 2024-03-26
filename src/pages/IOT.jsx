@@ -130,13 +130,14 @@ const DispositivoIoT = () => {
             className="btn bg-teal-700 rounded-lg p-2 w-full mt-2"
             disabled={!newClosingTime || isLoading}
           >
+
+            {isLoading ? "Enviando..." : "Actualizar Hora de Cierre"}
+          </button>
           <button
           onClick={sendUnlockTimeToBackend}
           className="btn bg-red-700 rounded-lg p-2 w-full mt-2"
           disabled={isLoading}
         ></button>
-            {isLoading ? "Enviando..." : "Actualizar Hora de Cierre"}
-          </button>
         </form>
       </div>
     </div>
