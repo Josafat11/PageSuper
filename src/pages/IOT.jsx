@@ -137,7 +137,9 @@ const DispositivoIoT = () => {
           onClick={sendUnlockTimeToBackend}
           className="btn bg-red-700 rounded-lg p-2 w-full mt-2"
           disabled={isLoading}
-        ></button>
+        >
+          {isLoading ? "Enviando..." : "Desbloquear"}
+        </button>
         </form>
       </div>
     </div>
