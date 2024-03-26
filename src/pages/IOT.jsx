@@ -77,9 +77,9 @@ const DispositivoIoT = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ closingTime: "00:00" }), // Mandar 00:00 para desbloquear
+        body: "00:00", // Mandar solo el dato de 00:00
       });
-
+  
       if (response.ok) {
         console.log("Hora de desbloqueo enviada al backend: 00:00");
         await fetchPetDoorData(); // Actualizar los datos de la puerta después de enviar la hora de desbloqueo
@@ -90,7 +90,7 @@ const DispositivoIoT = () => {
       console.error("Error al enviar la hora de desbloqueo al backend:", error);
     }
   };
-
+  
   return (
     <div className="bg-sky-200 flex justify-center items-center h-screen">
       <div className="bg-white p-8 rounded-lg w-96">
