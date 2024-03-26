@@ -75,7 +75,7 @@ const DispositivoIoT = () => {
       const response = await fetch(CONFIGURACIONES.BASEURL + "/petdoor/update-closing-time/65f3aa4b4a8f1b582066b244", {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "text/plain", // Cambiar el tipo de contenido a text/plain
         },
         body: "00:00", // Mandar solo el dato de 00:00
       });
@@ -90,6 +90,7 @@ const DispositivoIoT = () => {
       console.error("Error al enviar la hora de desbloqueo al backend:", error);
     }
   };
+  
   
   return (
     <div className="bg-sky-200 flex justify-center items-center h-screen">
