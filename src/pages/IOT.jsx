@@ -89,6 +89,9 @@ const DispositivoIoT = () => {
 
         {/* Formulario para ingresar la nueva hora de cierre */}
         <form onSubmit={handleSubmit} className="mt-4">
+        <label htmlFor="newClosingTime" className="block text-sm font-medium text-slate-700">
+            En cuanto se mande la hora se cerra y abrira hasta esa hora la puerta:
+          </label>
           <label htmlFor="newClosingTime" className="block text-sm font-medium text-slate-700">
             Nueva Hora de Cierre (Formato 24 horas):
           </label>
