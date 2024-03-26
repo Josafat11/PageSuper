@@ -98,7 +98,7 @@ const UserProfile = () => {
 
         </div>
       ) : (
-        <p>Cargando perfil de usuario...</p>
+        <p className='pb-64'>Cargando perfil de usuario...</p>
       )}
     </div>
   );

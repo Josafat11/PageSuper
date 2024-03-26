@@ -132,8 +132,11 @@ const AdminUsers = () => {
                 };
                 handleEditSubmit(updatedUserData);
               }}>
+                <p className='font-bold pb-2'>Nombre Usuario:</p>
                 <input type="text" name="name" defaultValue={editUser.name} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
+                <p className='font-bold pb-2'>Correo: </p>
                 <input type="email" name="email" defaultValue={editUser.email} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
+                <p className='font-bold pb-2'>Rol Usuario: </p>
                 <select name="role" defaultValue={editUser.role} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full">
                   <option value="admin">Admin</option>
                   <option value="user">User</option>

@@ -109,7 +109,7 @@ const Tienda = () => {
                   <button
                     onClick={() => paginate(i + 1)}
                     className={`px-3 py-1 rounded-md ${
-                      currentPage === i + 1 ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-900'
+                      currentPage === i + 1 ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-900'
                     }`}
                   >
                     {i + 1}

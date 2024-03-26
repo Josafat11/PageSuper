@@ -79,9 +79,12 @@ const AdminNosotros = () => {
                 e.preventDefault();
                 handleEditSubmit();
               }}>
-                <textarea name="resumen" value={nosotrosInfo.resumen} onChange={handleInputChange} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" rows="4" />
-                <textarea name="mision" value={nosotrosInfo.mision} onChange={handleInputChange} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" rows="4" />
-                <textarea name="vision" value={nosotrosInfo.vision} onChange={handleInputChange} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" rows="4" />
+                <p className='font-bold pb-2'>Descripción Resúmen:</p>
+                <textarea name="resumen" value={nosotrosInfo.resumen} onChange={handleInputChange} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" rows="4" required/>
+                <p className='font-bold pb-2'>Descripción Misión: </p>
+                <textarea name="mision" value={nosotrosInfo.mision} onChange={handleInputChange} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" rows="4" required/>
+                <p className='font-bold pb-2'>Descripción Visión:</p>
+                <textarea name="vision" value={nosotrosInfo.vision} onChange={handleInputChange} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" rows="4" required/>
                 <div className="flex justify-end">
                   <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded">Guardar Cambios</button>
                   <button onClick={() => setShowEditModal(false)} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Cancelar</button>

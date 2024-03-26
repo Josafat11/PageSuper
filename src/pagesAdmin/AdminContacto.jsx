@@ -86,8 +86,11 @@ const AdminContacto = () => {
                 e.preventDefault();
                 handleEditSubmit();
               }}>
+                <p className='font-bold pb-2'>Direccion Empresa: </p>
                 <input type="text" name="direccion" value={contactDetails.direccion} onChange={handleInputChange} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
+                <p className='font-bold pb-2'>Correo Empresa:</p>                
                 <input type="text" name="correoElectronico" value={contactDetails.correoElectronico} onChange={handleInputChange} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
+                <p className='font-bold pb-2'>Telefono Empresa: </p>
                 <input type="text" name="telefono" value={contactDetails.telefono} onChange={handleInputChange} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
                 <div className="flex justify-end">
                   <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded">Guardar Cambios</button>

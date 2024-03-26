@@ -159,7 +159,9 @@ const AdminPoliticas = () => {
                 };
                 handleEditSubmit(updatedPoliticaData);
               }}>
+                <p className='font-bold pb-2'> Titulo: </p>
                 <input type="text" name="titulo" defaultValue={editPolitica.titulo} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
+                <p className='font-bold pb-2'>Descripción: </p>
                 <textarea name="descripcion" defaultValue={editPolitica.descripcion} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
                 <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded">Guardar Cambios</button>
                 <button onClick={handleCloseModal} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Cancelar</button>
@@ -175,7 +177,9 @@ const AdminPoliticas = () => {
                 e.preventDefault();
                 handleAddPolitica();
               }}>
+                <p className='font-bold pb-2'>Titulo: </p>
                 <input type="text" name="titulo" value={newPoliticaData.titulo} onChange={handleInputChange} placeholder="Título" className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
+                <p className='font-bold pb-2'>Descripción: </p>
                 <textarea name="descripcion" value={newPoliticaData.descripcion} onChange={handleInputChange} placeholder="Descripción" className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
                 <div className="flex justify-end">
                   <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded">Agregar</button>

@@ -5,6 +5,7 @@ const DispositivoIoT = () => {
   const [petDoorData, setPetDoorData] = useState(null);
   const [newClosingTime, setNewClosingTime] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [ubicacion, setUbicacion] = useState(false);
 
   const fetchPetDoorData = async () => {
     try {
@@ -12,6 +13,7 @@ const DispositivoIoT = () => {
       if (response.ok) {
         const data = await response.json();
         setPetDoorData(data);
+        setUbicacion(data.ubicacion);
       } else {
         console.error("Error al obtener los datos del dispositivo IoT:", response.status);
       }
@@ -79,6 +81,7 @@ const DispositivoIoT = () => {
             <p className="text-sm font-medium text-slate-700">Modo Automático: {petDoorData.automaticMode ? "Sí" : "No"}</p>
             <p className="text-sm font-medium text-slate-700">Nombre: {petDoorData.name}</p>
             <p className="text-sm font-medium text-slate-700">Hora de Cierre: {petDoorData.closingTime}</p>
+            <p className="text-sm font-medium text-slate-700">Ubicación: {ubicacion ? "Fuera" : "Dentro"}</p> {/* Mostrar ubicación */}
           </div>
         ) : (
           <p className="text-sm font-medium text-red-500">Cargando datos del dispositivo IoT...</p>

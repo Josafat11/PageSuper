@@ -189,8 +189,11 @@ const AdminProd = () => {
                 };
                 handleEditSubmit(updatedProductData);
               }}>
+                <p className='font-bold pb-2'>Nombre: </p>
                 <input type="text" name="name" defaultValue={editProduct.name} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
+                <p className='font-bold pb-2'>Descripción:</p>
                 <textarea name="description" defaultValue={editProduct.description} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
+                <p className='font-bold pb-2'>Precio: </p>
                 <input type="number" name="price" defaultValue={editProduct.price} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
                 <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded">Guardar Cambios</button>
                 <button onClick={handleCloseModal} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Cancelar</button>
@@ -206,14 +209,18 @@ const AdminProd = () => {
                 e.preventDefault();
                 handleAddProduct();
               }}>
-                <input type="text" name="name" value={newProductData.name} onChange={handleInputChange} placeholder="Nombre" className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
-                <input type="text" name="category" value={newProductData.category} onChange={handleInputChange} placeholder="Categoría" className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
-                <input type="number" name="price" value={newProductData.price} onChange={handleInputChange} placeholder="Precio" className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
-                <textarea name="description" value={newProductData.description} onChange={handleInputChange} placeholder="Descripción" className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
+                <p className='font-bold pb-2'>Nombre:</p>
+                <input type="text" name="name" value={newProductData.name} onChange={handleInputChange} placeholder="Nombre" className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" required />
+                <p className='font-bold pb-2'>Categoría:</p>
+                <input type="text" name="category" value={newProductData.category} onChange={handleInputChange} placeholder="Categoría" className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" required />
+                <p className='font-bold pb-2'>Precio: </p>
+                <input type="number" name="price" value={newProductData.price} onChange={handleInputChange} placeholder="Precio" className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" required />
+                <p className='font-bold pb-2'>Descripción: </p>
+                <textarea name="description" value={newProductData.description} onChange={handleInputChange} placeholder="Descripción" className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" required/>
                 {/* Campo para subir imagen */}
                 <div>
-                  <label htmlFor="imagen" className="block mb-1">Imagen:</label>
-                  <input id="imagen" type="file" accept="image/*" onChange={(e) => setImagen(e.target.files[0])} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
+                  <label htmlFor="imagen" className="block mb-1 font-bold pb-2">Imagen:</label>
+                  <input id="imagen" type="file" accept="image/*" onChange={(e) => setImagen(e.target.files[0])} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" required/>
                   {imagen && (
                     <div className="mb-2">
                       <p className="mb-1">Vista previa de la imagen:</p>
