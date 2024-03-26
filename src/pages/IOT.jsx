@@ -37,6 +37,39 @@ const DispositivoIoT = () => {
     setNewClosingTime(event.target.value);
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+
+    try {
+      // Validar que la hora ingresada esté en formato de 24 horas (HH:mm)
+      const timePattern = /^(?:2[0-3]|[01][0-9]):[0-5][0-9]$/;
+      if (!timePattern.test(newClosingTime)) {
+        alert("Por favor ingresa la hora en formato de 24 horas (HH:mm).");
+        return;
+      }
+
+      const response = await fetch(CONFIGURACIONES.BASEURL + "/petdoor/update-closing-time/65f3aa4b4a8f1b582066b244", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ closingTime: newClosingTime }),
+      });
+
+      if (response.ok) {
+        // Si la solicitud fue exitosa, actualiza los datos de la puerta
+        await fetchPetDoorData();
+      } else {
+        console.error("Error al enviar la nueva hora de cierre:", response.status);
+      }
+    } catch (error) {
+      console.error("Error al enviar la nueva hora de cierre:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const sendUnlockTimeToBackend = async () => {
     try {
       const response = await fetch(CONFIGURACIONES.BASEURL + "/petdoor/update-closing-time/65f3aa4b4a8f1b582066b244", {
@@ -55,25 +88,6 @@ const DispositivoIoT = () => {
       }
     } catch (error) {
       console.error("Error al enviar la hora de desbloqueo al backend:", error);
-    }
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setIsLoading(true);
-
-    try {
-      // Validar que la hora ingresada esté en formato de 24 horas (HH:mm)
-      const timePattern = /^(?:2[0-3]|[01][0-9]):[0-5][0-9]$/;
-      if (!timePattern.test(newClosingTime)) {
-        alert("Por favor ingresa la hora en formato de 24 horas (HH:mm).");
-        return;
-      }
-
-      // Llamar a la función para enviar la hora de desbloqueo al backend
-      await sendUnlockTimeToBackend();
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -96,6 +110,9 @@ const DispositivoIoT = () => {
 
         {/* Formulario para ingresar la nueva hora de cierre */}
         <form onSubmit={handleSubmit} className="mt-4">
+        <label htmlFor="newClosingTime" className="block text-sm font-medium text-slate-700">
+            En cuanto se mande la hora se cerra y abrira hasta esa hora la puerta:
+          </label>
           <label htmlFor="newClosingTime" className="block text-sm font-medium text-slate-700">
             Nueva Hora de Cierre (Formato 24 horas):
           </label>
@@ -110,21 +127,17 @@ const DispositivoIoT = () => {
           />
           <button
             type="submit"
-            className={`btn bg-teal-700 rounded-lg p-2 w-full mt-2 ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
+            className="btn bg-teal-700 rounded-lg p-2 w-full mt-2"
             disabled={!newClosingTime || isLoading}
           >
-            {isLoading ? "Enviando..." : "Actualizar Hora de Cierre"}
-          </button>
-        </form>
-
-        {/* Botón para enviar la hora de desbloqueo */}
-        <button
+          <button
           onClick={sendUnlockTimeToBackend}
           className="btn bg-red-700 rounded-lg p-2 w-full mt-2"
           disabled={isLoading}
-        >
-          {isLoading ? "Enviando..." : "Desbloquear Puerta"}
-        </button>
+        ></button>
+            {isLoading ? "Enviando..." : "Actualizar Hora de Cierre"}
+          </button>
+        </form>
       </div>
     </div>
   );
