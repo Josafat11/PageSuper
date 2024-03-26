@@ -72,12 +72,15 @@ const DispositivoIoT = () => {
 
   const sendUnlockTimeToBackend = async () => {
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL + "/petdoor/update-closing-time/65f3aa4b4a8f1b582066b244", {
+      const unlockTimeUrl = CONFIGURACIONES.BASEURL + "/petdoor/update-closing-time/65f3aa4b4a8f1b582066b244";
+      const jsonData = '{"closingTime": "00:00"}';  // Mandar 00:00 para desbloquear
+  
+      const response = await fetch(unlockTimeUrl, {
         method: "PUT",
         headers: {
-          "Content-Type": "text/plain", // Cambiar el tipo de contenido a text/plain
+          "Content-Type": "application/json",
         },
-        body: "00:00", // Mandar solo el dato de 00:00
+        body: jsonData,
       });
   
       if (response.ok) {
@@ -90,6 +93,7 @@ const DispositivoIoT = () => {
       console.error("Error al enviar la hora de desbloqueo al backend:", error);
     }
   };
+  
   
   
   return (
