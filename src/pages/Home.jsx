@@ -30,20 +30,7 @@ const Home = () => {
           </div>
 
           {/* Contenedor para las especificaciones */}
-          <div className="w-1/2 px-6 py-4">
-            <div className="font-bold text-xl mb-2">Producto Estrella</div>
-            <p className="text-gray-700 text-base">
-              Descripción detallada del Producto Estrella.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
 
-            {/* Precio del producto */}
-            <div className="px-6 pt-4 pb-2">
-              <p className="text-gray-700 text-base">$50</p>
-            </div>
-          </div>
         </div>
 
 
