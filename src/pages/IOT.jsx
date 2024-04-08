@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { CONFIGURACIONES } from "../config/confing";
+import imagenCerrado from "../assets/candado_cerrado.png";
+import imagenAbierto from "../assets/candado_abierto.png";
+import imagenPeligro from "../assets/peligro.png";
+import imagenAutomatico from "../assets/modo_automatico.png";
+import imagenNombre from "../assets/puerta.png";
+import imagenCierre from "../assets/hora_cierre.png";
+import imagenUbicacion from "../assets/ubicacion.png";
 
 const DispositivoIoT = () => {
   const [petDoorData, setPetDoorData] = useState(null);
@@ -9,7 +16,7 @@ const DispositivoIoT = () => {
 
   const fetchPetDoorData = async () => {
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL + "/petdoor/65f3aa4b4a8f1b582066b244");
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + "/petdoor/65f3aa4b4a8f1b582066b244");
       if (response.ok) {
         const data = await response.json();
         setPetDoorData(data);
@@ -49,7 +56,7 @@ const DispositivoIoT = () => {
         return;
       }
 
-      const response = await fetch(CONFIGURACIONES.BASEURL + "/petdoor/update-closing-time/65f3aa4b4a8f1b582066b244", {
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + "/petdoor/update-closing-time/65f3aa4b4a8f1b582066b244", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +79,7 @@ const DispositivoIoT = () => {
 
   const sendUnlockTimeToBackend = async () => {
     try {
-      const unlockTimeUrl = CONFIGURACIONES.BASEURL + "/petdoor/update-closing-time/65f3aa4b4a8f1b582066b244";
+      const unlockTimeUrl = CONFIGURACIONES.BASEURL2 + "/petdoor/update-closing-time/65f3aa4b4a8f1b582066b244";
       const jsonData = '{"closingTime": "00:00"}';  // Mandar 00:00 para desbloquear
   
       const response = await fetch(unlockTimeUrl, {
@@ -97,28 +104,62 @@ const DispositivoIoT = () => {
   
   
   return (
-    <div className="bg-sky-200 flex justify-center items-center h-screen">
-      <div className="bg-white p-8 rounded-lg w-96">
-        <h2 className="text-lg font-semibold text-center text-gray-700 mb-4">Detalles del Dispositivo IoT</h2>
+    <div className="bg-sky-200 flex justify-center items-center pb-24 pt-20">
+      <div className="bg-white p-8 rounded-lg">
+        <h2 className="text-5xl font-bold text-center text-gray-700 mb-4 ">Detalles del Dispositivo IoT</h2>
+
         {petDoorData ? (
-          <div>
-            <p className="text-sm font-medium text-slate-700">Estado: {petDoorData.state ? "Cerrado" : "Abierto"}</p>
-            <p className="text-sm font-medium text-slate-700">Peligro: {petDoorData.danger ? "Sí" : "No"}</p>
-            <p className="text-sm font-medium text-slate-700">Modo Automático: {petDoorData.automaticMode ? "Sí" : "No"}</p>
-            <p className="text-sm font-medium text-slate-700">Nombre: {petDoorData.name}</p>
-            <p className="text-sm font-medium text-slate-700">Hora de Cierre: {petDoorData.closingTime}</p>
-            <p className="text-sm font-medium text-slate-700">Ubicación: {ubicacion ? "Fuera" : "Dentro"}</p> {/* Mostrar ubicación */}
+          <div className="grid grid-cols-2 gap-4 pt-12">
+          {/* Primera fila */}
+          
+          <div className="flex items-center flex-col">
+            <img src={imagenNombre} alt="Nombre" className="w-24 h-24 m-4 pb-2" />
+            <p className="text-lg font-medium text-slate-700">Nombre: {petDoorData.name}</p>
           </div>
+
+          <div className="flex items-center flex-col">
+            <img
+              src={petDoorData.state ? imagenCerrado : imagenAbierto}
+              alt="Estado"
+              className="w-20 h-24 m-4 pb-2"
+            />
+            <p className="text-lg font-semibold text-slate-700">Estado: {petDoorData.state ? "Cerrado" : "Abierto"}</p>
+          </div>
+          <div className="flex items-center flex-col">
+            <img src={imagenPeligro} alt="Peligro" className="w-24 h-24 m-4 pb-2" />
+            <p className="text-lg font-medium text-slate-700">Peligro: {petDoorData.danger ? "Sí" : "No"}</p>
+          </div>
+
+          {/* Segunda fila */}
+          <div className="flex items-center flex-col">
+            <img src={imagenAutomatico} alt="Modo Automático" className="w-24 h-24 m-4 pb-2" />
+            <p className="text-lg font-medium text-slate-700">Modo Automático: {petDoorData.automaticMode ? "Sí" : "No"}</p>
+          </div>
+          
+          {/* Tercera fila */}
+          <div className="flex items-center flex-col">
+            <img src={imagenCierre} alt="Hora de Cierre" className="w-24 h-24 m-4 pb-2" />
+            <p className="text-lg font-medium text-slate-700">Hora de Cierre: {petDoorData.closingTime}</p>
+          </div>
+
+          <div className="flex items-center flex-col">
+            <img src={imagenUbicacion} alt="Ubicación" className="w-24 h-24 m-4 pb-2" />
+            <p className="text-lg font-medium text-slate-700">Ubicación: {ubicacion ? "Fuera" : "Dentro"}</p>
+          </div>
+        </div>
+        
+
+
         ) : (
           <p className="text-sm font-medium text-red-500">Cargando datos del dispositivo IoT...</p>
         )}
 
         {/* Formulario para ingresar la nueva hora de cierre */}
         <form onSubmit={handleSubmit} className="mt-4">
-        <label htmlFor="newClosingTime" className="block text-sm font-medium text-slate-700">
-            En cuanto se mande la hora se cerra y abrira hasta esa hora la puerta:
+        <label htmlFor="newClosingTime" className="block text-lg font-medium text-slate-700 p-3">
+            *En cuanto se mande la hora se cerra y abrira hasta esa hora la puerta*
           </label>
-          <label htmlFor="newClosingTime" className="block text-sm font-medium text-slate-700">
+          <label htmlFor="newClosingTime" className="block text-lg font-medium text-slate-700 text-center pb-5">
             Nueva Hora de Cierre (Formato 24 horas):
           </label>
           <input
@@ -126,23 +167,23 @@ const DispositivoIoT = () => {
             id="newClosingTime"
             value={newClosingTime}
             onChange={handleNewClosingTimeChange}
-            className="input border border-gray-300 p-2 w-full rounded-md"
+            className="input border border-gray-300 p-2 w-full rounded-md mb-5"
             pattern="(?:2[0-3]|[01][0-9]):[0-5][0-9]"
+            placeholder="Ingresar Hora"
             required
           />
           <button
             type="submit"
-            className="btn bg-teal-700 rounded-lg p-2 w-full mt-2"
+            className="btn bg-teal-700 rounded-lg p-2 w-full mt-2 hover:bg-teal-500"
             disabled={!newClosingTime || isLoading}
           >
-
             {isLoading ? "Enviando..." : "Actualizar Hora de Cierre"}
           </button>
 
         </form>
         <button
           onClick={sendUnlockTimeToBackend}
-          className="btn bg-red-700 rounded-lg p-2 w-full mt-2"
+          className="btn bg-red-700 rounded-lg p-2 w-full mt-2 hover:bg-red-500"
           disabled={isLoading}
         >
           {isLoading ? "Enviando..." : "Desbloquear"}

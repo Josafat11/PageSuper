@@ -16,7 +16,7 @@ const UserProfile = () => {
   // Función para cargar el perfil de usuario desde el servidor
   const fetchUserProfile = async () => {
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL + `/auth/profile/${user.email}`, {
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + `/auth/profile/${user.email}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ const UserProfile = () => {
   // Función para enviar los cambios del perfil de usuario al servidor
   const updateUserProfile = async () => {
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL + `/auth/profile/${user.email}`, {
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + `/auth/profile/${user.email}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

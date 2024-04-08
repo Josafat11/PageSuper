@@ -10,7 +10,7 @@ const FaqPage = () => {
 
   const fetchFaqs = async () => {
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL + "/faq/");
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + "/faq/");
       if (response.ok) {
         const data = await response.json();
         setFaqs(data);

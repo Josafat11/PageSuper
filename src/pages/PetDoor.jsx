@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import { CONFIGURACIONES } from '../config/confing';
 import { useUser } from '../context/UseContext'; // Importa el hook useUser del contexto
+import { BsFillDoorOpenFill } from "react-icons/bs";
 
 const RegistroPuerta = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const RegistroPuerta = () => {
     };
 
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL + "/petdoor/", {
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + "/petdoor/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,7 +41,7 @@ const RegistroPuerta = () => {
           title: "Registro exitoso",
           text: json.message,
         }).then(() => {
-          navigate("/dashboard");
+          navigate("/veriot");
         });
       } else {
         Swal.fire({
@@ -67,7 +68,7 @@ const RegistroPuerta = () => {
         </h1>
 
         <form className="grid grid-cols-2 gap-4" onSubmit={handleSubmit}>
-          <div>
+          <div className="mt-5 mb-5">
             <span>Dirección MAC</span>
             <input
               type="text"
@@ -91,18 +92,12 @@ const RegistroPuerta = () => {
             {errors.name && (
               <p className="text-red-500 text-sm">{errors.name}</p>
             )}
+            
+          </div>
 
-            <span>Hora de Cierre</span>
-            <input
-              type="time"
-              placeholder="Hora de Cierre"
-              value={closingTime}
-              onChange={(e) => setClosingTime(e.target.value)}
-              className="input border border-gray-300 p-2 w-full rounded-md"
-            />
-            {errors.closingTime && (
-              <p className="text-red-500 text-sm">{errors.closingTime}</p>
-            )}
+          {/* Columna para la imagen */}
+          <div className="flex-grow flex justify-center items-center mt-5">
+            <BsFillDoorOpenFill className="text-gray-800 w-32 h-32 " />
           </div>
 
           <button
@@ -114,12 +109,12 @@ const RegistroPuerta = () => {
           </button>
         </form>
 
-        <NavLink
+        {/* <NavLink
           to="/veriot"
           className="text-center text-sm mt-4 block hover:underline hover:text-emerald-500"
         >
           Ir al Panel de Usuario
-        </NavLink>
+        </NavLink> */}
       </div>
     </div>
   );

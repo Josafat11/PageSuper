@@ -4,6 +4,7 @@ import perro from '../assets/perro.png'
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { TiLocation, TiPhone, TiMail } from 'react-icons/ti';
 import { CONFIGURACIONES } from "../config/confing";
+import axios from 'axios'; // Importar Axios
 
 const Footer = () => {
   const [contactDetails, setContactDetails] = useState(null);
@@ -11,10 +12,9 @@ const Footer = () => {
   useEffect(() => {
     const fetchContactDetails = async () => {
       try {
-        const response = await fetch(CONFIGURACIONES.BASEURL + "/contact/");
-        if (response.ok) {
-          const data = await response.json();
-          setContactDetails(data);
+        const response = await axios.get(CONFIGURACIONES.BASEURL2 + "/contact/"); // Utilizar Axios para hacer la solicitud GET
+        if (response.status === 200) {
+          setContactDetails(response.data); // Establecer los detalles de contacto en el estado
         } else {
           console.error(
             "Error al obtener los detalles de contacto:",
@@ -25,7 +25,13 @@ const Footer = () => {
         console.error("Error al obtener los detalles de contacto:", error);
       }
     };
+
     fetchContactDetails();
+
+    // Actualizar cada 5 minutos
+    const interval = setInterval(fetchContactDetails, 1000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -85,10 +91,10 @@ const Footer = () => {
                   <a href="#" className="flex items-center"><FaFacebookF className="mr-2" /> Facebook</a>
                 </li>
                 <li>
-                  <a href="#" className="flex items-center"><FaTwitter className="mr-2"/> Twitter </a>
+                  <a href="https://twitter.com/SuperPet504" className="flex items-center"><FaTwitter className="mr-2"/> Twitter </a>
                 </li>
                 <li>
-                  <a href="#" className="flex items-center" ><FaInstagram className="mr-2" />Instagram </a>
+                  <a href="https://www.instagram.com/__super_pet__/" className="flex items-center" ><FaInstagram className="mr-2" />Instagram </a>
                 </li>
               </ul>
           </div>
@@ -98,8 +104,8 @@ const Footer = () => {
             {contactDetails ? (
               <ul className="space-y-2">
                 <li className="flex items-center" ><TiLocation className="mr-2" /> {contactDetails.direccion}</li>
-                <li className="flex items-center" ><TiPhone className="mr-2"/> {contactDetails.phone}</li>
-                <li className="flex items-center" ><TiMail className="mr-2"/> {contactDetails.email}</li>
+                <li className="flex items-center" ><TiPhone className="mr-2"/> {contactDetails.telefono}</li>
+                <li className="flex items-center" ><TiMail className="mr-2"/> {contactDetails.correoElectronico}</li>
               </ul>
             ) : (
               <p>Cargando detalles de contacto...</p>

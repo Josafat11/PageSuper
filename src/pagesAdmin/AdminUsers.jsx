@@ -10,7 +10,7 @@ const AdminUsers = () => {
     const fetchUsers = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(CONFIGURACIONES.BASEURL + "/auth/users", {
+        const response = await fetch(CONFIGURACIONES.BASEURL2 + "/auth/users", {
           method: "GET",
           headers: {
             'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ const AdminUsers = () => {
   const handleDelete = async (userId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(CONFIGURACIONES.BASEURL + `/auth/users/${userId}`, {
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + `/auth/users/${userId}`, {
         method: "DELETE",
         headers: {
           'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ const AdminUsers = () => {
   const handleEditSubmit = async (updatedUserData) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(CONFIGURACIONES.BASEURL + `/auth/users/${editUser._id}`, {
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + `/auth/users/${editUser._id}`, {
         method: "PUT",
         headers: {
           'Content-Type': 'application/json',
@@ -133,9 +133,27 @@ const AdminUsers = () => {
                 handleEditSubmit(updatedUserData);
               }}>
                 <p className='font-bold pb-2'>Nombre Usuario:</p>
-                <input type="text" name="name" defaultValue={editUser.name} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
+                <input
+                  type="text"
+                  name="name"
+                  defaultValue={editUser.name}
+                  pattern="[A-Za-z\s]+"
+                  title="El nombre solo puede contener letras y espacios"
+                  className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full"
+                  required
+                />
+
                 <p className='font-bold pb-2'>Correo: </p>
-                <input type="email" name="email" defaultValue={editUser.email} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
+                <input
+                  type="email"
+                  name="email"
+                  defaultValue={editUser.email}
+                  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                  title="Por favor, introduce una dirección de correo electrónico válida"
+                  className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full"
+                  required
+                />
+
                 <p className='font-bold pb-2'>Rol Usuario: </p>
                 <select name="role" defaultValue={editUser.role} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full">
                   <option value="admin">Admin</option>

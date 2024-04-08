@@ -13,7 +13,7 @@ const Contacto = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL + "/comment/", {
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + "/comment/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const Contacto = () => {
   useEffect(() => {
     const fetchContactDetails = async () => {
       try {
-        const response = await fetch(CONFIGURACIONES.BASEURL + "/contact/");
+        const response = await fetch(CONFIGURACIONES.BASEURL2 + "/contact/");
         if (response.ok) {
           const data = await response.json();
           setContactDetails(data);
@@ -169,11 +169,11 @@ const Contacto = () => {
               </p>
               <p className="text-gray-700 mb-2">
                 <span className="font-bold">Correo Electrónico:</span>{" "}
-                {contactDetails.email}
+                {contactDetails.correoElectronico}
               </p>
               <p className="text-gray-700 mb-2">
                 <span className="font-bold">Teléfono:</span>{" "}
-                {contactDetails.phone}
+                {contactDetails.telefono}
               </p>
             </div>
           ) : (

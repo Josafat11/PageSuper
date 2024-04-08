@@ -20,7 +20,7 @@ const ExtractSecretQuestionPage = () => {
     event.preventDefault();
 
     try {
-      const res = await fetch(CONFIGURACIONES.BASEURL + '/auth/forgotPasswordBySecretQuestion', {
+      const res = await fetch(CONFIGURACIONES.BASEURL2 + '/auth/forgotPasswordBySecretQuestion', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ const ExtractSecretQuestionPage = () => {
 
   const handleResetPassword = async () => {
     try {
-        const res = await fetch(CONFIGURACIONES.BASEURL + '/auth/recoverPasswordBySecretQuestion', {
+        const res = await fetch(CONFIGURACIONES.BASEURL2 + '/auth/recoverPasswordBySecretQuestion', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -69,11 +69,12 @@ const Navbar = () => {
                   <NavLink
                     activeClassName="text-green-500"
                     className="text-white hover:text-green-300 hover:font-bold"
-                    to="/petdoor"
+                    to={user.door !== "ninguno" ? "/veriot" : "/petdoor"}
                   >
-                    Dispositivo IOT
+                    {user.door !== "ninguno" ? "Ver IoT" : "Registrar IoT"}
                   </NavLink>
                 </li>
+
                 <li>
                   <NavLink
                     activeClassName="text-green-500"

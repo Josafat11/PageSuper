@@ -1,3 +1,4 @@
+// Componente Login
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
@@ -37,7 +38,7 @@ const Login = () => {
     }
 
     try {
-      const res = await fetch(CONFIGURACIONES.BASEURL + "/auth/signin", {
+      const res = await fetch(CONFIGURACIONES.BASEURL2 + "/auth/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -53,10 +54,10 @@ const Login = () => {
         localStorage.setItem('token', json.token);
       
         // Almacena el usuario en el almacenamiento local (localStorage)
-        localStorage.setItem('user', JSON.stringify({ email, role: json.role }));
+        localStorage.setItem('user', JSON.stringify({ email, role: json.role, door: json.door }));
       
-        // Establece el usuario y su rol en el contexto
-        setUser({ email, role: json.role, _id: json.id }); // Agregar el _id del usuario
+        // Establece el usuario, su rol y su puerta en el contexto
+        setUser({ email, role: json.role, door: json.door, _id: json.id }); // Agregar el _id del usuario
       
         if (json.role === "admin") {
           navigate('/adminhome');

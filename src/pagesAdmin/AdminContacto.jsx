@@ -16,15 +16,15 @@ const AdminContacto = () => {
 
   const fetchContactDetails = async () => {
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL + "/contact/");
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + "/contact/");
       if (response.ok) {
         const data = await response.json();
         console.log(data);
         // Actualizar el nombre de las propiedades
         setContactDetails({
           direccion: data.direccion,
-          correoElectronico: data.email,
-          telefono: data.phone
+          correoElectronico: data.correoElectronico,
+          telefono: data.telefono
         });
       } else {
         console.error('Error al obtener los detalles de contacto:', response.status);
@@ -36,7 +36,7 @@ const AdminContacto = () => {
   
   const handleEditSubmit = async () => {
     try {
-      const response = await fetch(CONFIGURACIONES.BASEURL + '/contact/', {
+      const response = await fetch(CONFIGURACIONES.BASEURL2 + '/contact/', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -87,11 +87,38 @@ const AdminContacto = () => {
                 handleEditSubmit();
               }}>
                 <p className='font-bold pb-2'>Direccion Empresa: </p>
-                <input type="text" name="direccion" value={contactDetails.direccion} onChange={handleInputChange} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
+                <input 
+                  type="text" 
+                  name="direccion" 
+                  value={contactDetails.direccion} 
+                  onChange={handleInputChange} 
+                  className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full"
+                  pattern="[A-Za-z0-9\s]+"
+                  required
+                />
+
                 <p className='font-bold pb-2'>Correo Empresa:</p>                
-                <input type="text" name="correoElectronico" value={contactDetails.correoElectronico} onChange={handleInputChange} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
+                <input 
+                  type="text" 
+                  name="correoElectronico" 
+                  value={contactDetails.correoElectronico} 
+                  onChange={handleInputChange} 
+                  className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" 
+                  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                  required
+                />
+
                 <p className='font-bold pb-2'>Telefono Empresa: </p>
-                <input type="text" name="telefono" value={contactDetails.telefono} onChange={handleInputChange} className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" />
+                <input 
+                  type="text" 
+                  name="telefono" 
+                  value={contactDetails.telefono} 
+                  onChange={handleInputChange} 
+                  className="mb-2 px-4 py-2 border border-gray-300 rounded-md block w-full" 
+                  pattern="[0-9]{10}"
+                  required
+                />
+
                 <div className="flex justify-end">
                   <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-2 rounded">Guardar Cambios</button>
                   <button onClick={() => setShowEditModal(false)} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Cancelar</button>
