@@ -26,7 +26,7 @@ const ForgotPassword = () => {
     try {
       console.log("Código secreto:", code); // Imprime el código secreto
   
-      const res = await fetch(CONFIGURACIONES.BASEURL2 + "/auth/changePassword", {
+      const res = await fetch(CONFIGURACIONES.BASEURL + "/auth/changePassword", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -12,7 +12,7 @@ const Footer = () => {
   useEffect(() => {
     const fetchContactDetails = async () => {
       try {
-        const response = await axios.get(CONFIGURACIONES.BASEURL2 + "/contact/"); // Utilizar Axios para hacer la solicitud GET
+        const response = await axios.get(CONFIGURACIONES.BASEURL + "/contact/"); // Utilizar Axios para hacer la solicitud GET
         if (response.status === 200) {
           setContactDetails(response.data); // Establecer los detalles de contacto en el estado
         } else {

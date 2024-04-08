@@ -10,7 +10,7 @@ const AdminUsers = () => {
     const fetchUsers = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(CONFIGURACIONES.BASEURL2 + "/auth/users", {
+        const response = await fetch(CONFIGURACIONES.BASEURL + "/auth/users", {
           method: "GET",
           headers: {
             'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ const AdminUsers = () => {
   const handleDelete = async (userId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(CONFIGURACIONES.BASEURL2 + `/auth/users/${userId}`, {
+      const response = await fetch(CONFIGURACIONES.BASEURL + `/auth/users/${userId}`, {
         method: "DELETE",
         headers: {
           'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ const AdminUsers = () => {
   const handleEditSubmit = async (updatedUserData) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(CONFIGURACIONES.BASEURL2 + `/auth/users/${editUser._id}`, {
+      const response = await fetch(CONFIGURACIONES.BASEURL + `/auth/users/${editUser._id}`, {
         method: "PUT",
         headers: {
           'Content-Type': 'application/json',

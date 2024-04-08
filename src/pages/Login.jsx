@@ -38,7 +38,7 @@ const Login = () => {
     }
 
     try {
-      const res = await fetch(CONFIGURACIONES.BASEURL2 + "/auth/signin", {
+      const res = await fetch(CONFIGURACIONES.BASEURL + "/auth/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
