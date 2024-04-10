@@ -1,12 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { CONFIGURACIONES } from "../config/confing";
-import imagenCerrado from "../assets/candado_cerrado.png";
-import imagenAbierto from "../assets/candado_abierto.png";
-import imagenPeligro from "../assets/peligro.png";
-import imagenAutomatico from "../assets/modo_automatico.png";
-import imagenNombre from "../assets/puerta.png";
-import imagenCierre from "../assets/hora_cierre.png";
-import imagenUbicacion from "../assets/ubicacion.png";
+// Iconos
+import { GiSteelDoor } from "react-icons/gi";
+import { HiLockClosed ,  HiLockOpen } from "react-icons/hi2";
+import { PiClockCountdownDuotone } from "react-icons/pi";
+import { AiOutlineAlert } from "react-icons/ai";
+import { AiFillAlert } from "react-icons/ai";
+import { MdOutlineMotionPhotosAuto } from "react-icons/md";
+import { GiExitDoor } from "react-icons/gi";
+import { GiEntryDoor } from "react-icons/gi";
+import { LiaTemperatureHighSolid } from "react-icons/lia";
+// Iconos
+
+// Imagenes widget
+// import imagenCerrado from "../assets/candado_cerrado.png";
+// import imagenAbierto from "../assets/candado_abierto.png";
+// import imagenPeligro from "../assets/peligro.png";
+// import imagenAutomatico from "../assets/modo_automatico.png";
+// import imagenNombre from "../assets/puerta.png";
+// import imagenCierre from "../assets/hora_cierre.png";
+// import imagenUbicacion from "../assets/ubicacion.png";
+//Imagenes como widget
+
 import Swal from "sweetalert2";
 
 const DispositivoIoT = () => {
@@ -181,7 +196,7 @@ const DispositivoIoT = () => {
           body: JSON.stringify(data),
         }
       );
-  
+
       const json = await response.json();
   
       if (json.message === "Datos agregados al historial exitosamente") {
@@ -213,82 +228,104 @@ const DispositivoIoT = () => {
   };
 
   return (
-    <div className="bg-sky-200 flex justify-center items-center pb-24 pt-20">
+    <div className="bg-sky-200 flex justify-center items-center pb-24 pt-10">
       <div className="bg-white p-8 rounded-lg">
         <h2 className="text-5xl font-bold text-center text-gray-700 mb-4 ">
           Detalles del Dispositivo IoT
         </h2>
 
         {petDoorData ? (
-          <div className="grid grid-cols-2 gap-4 pt-12">
+          <div className="grid grid-cols-5 gap-4 pt-6">
             {/* Primera fila */}
-            <div className="flex items-center flex-col">
-              <img
-                src={imagenNombre}
-                alt="Nombre"
-                className="w-24 h-24 m-4 pb-2"
-              />
+            <div className="flex items-center flex-col col-span-3">
+              <p className="text-lg font-bold font-serif text-slate-700">
+                Nombre Dispositivo:
+              </p>
+              <GiSteelDoor
+                size={110}
+                color="#3D3736"
+                className=""
+              /> {/* Icono de puerta cerrada */}
               <p className="text-lg font-medium text-slate-700">
-                Nombre: {petDoorData.name}
+                {petDoorData.name}
+              </p>
+            </div>
+            
+            <div className="flex items-center flex-col col-span-2">
+              <p className="text-lg font-bold font-serif text-slate-700">
+                Estado:
+              </p>
+              {petDoorData.state ? <HiLockClosed size={110} color="#3D3736" /> : <HiLockOpen size={110} color="#3D3736" />}
+              <p className="text-lg font-semibold text-slate-700">
+                {petDoorData.state ? "Cerrado" : "Abierto"}
               </p>
             </div>
 
-            <div className="flex items-center flex-col">
-              <img
-                src={petDoorData.state ? imagenCerrado : imagenAbierto}
-                alt="Estado"
-                className="w-20 h-24 m-4 pb-2"
-              />
-              <p className="text-lg font-semibold text-slate-700">
-                Estado: {petDoorData.state ? "Cerrado" : "Abierto"}
+            {/* Segunda fila */}
+            <div className="flex items-center flex-col col-span-1">
+              <p className="text-lg font-bold font-serif text-slate-700">
+                Peligro:
               </p>
-            </div>
-            <div className="flex items-center flex-col">
-              <img
-                src={imagenPeligro}
-                alt="Peligro"
-                className="w-24 h-24 m-4 pb-2"
-              />
+              {petDoorData.danger ? (
+                // Si hay peligro, mostrar el icono lleno
+                <AiFillAlert size={110} color="#B92D15" />
+              ) : (
+                // Si no hay peligro, mostrar el icono contorno
+                <AiOutlineAlert size={110} color="#3D3736" />
+              )}
               <p className="text-lg font-medium text-slate-700">
                 Peligro: {petDoorData.danger ? "Sí" : "No"}
               </p>
             </div>
 
-            {/* Segunda fila */}
-            <div className="flex items-center flex-col">
-              <img
-                src={imagenAutomatico}
-                alt="Modo Automático"
-                className="w-24 h-24 m-4 pb-2"
-              />
+            <div className="flex items-center flex-col col-span-1">
+              <p className="text-lg font-bold font-serif text-slate-700">
+                Modo Automático:
+              </p>
+              <MdOutlineMotionPhotosAuto size={110} color="#3D3736" />
               <p className="text-lg font-medium text-slate-700">
-                Modo Automático: {petDoorData.automaticMode ? "Sí" : "No"}
+                {petDoorData.automaticMode ? "Activo" : "Inactivo"}
               </p>
             </div>
 
-            {/* Tercera fila */}
-            <div className="flex items-center flex-col">
-              <img
-                src={imagenCierre}
-                alt="Hora de Cierre"
-                className="w-24 h-24 m-4 pb-2"
+            <div className="flex items-center flex-col col-span-1">
+              <p className="text-lg font-bold font-serif text-slate-700">
+                Hora de Cierre:
+              </p>
+              <PiClockCountdownDuotone
+                size={110}
+                color="#3D3736"
               />
               <p className="text-lg font-medium text-slate-700">
-                Hora de Cierre: {petDoorData.closingTime}
+                {petDoorData.closingTime}
               </p>
             </div>
 
-            <div className="flex items-center flex-col">
-              <img
-                src={imagenUbicacion}
-                alt="Ubicación"
-                className="w-24 h-24 m-4 pb-2"
-              />
+            <div className="flex items-center flex-col col-span-1">
+              <p className="text-lg font-bold font-serif text-slate-700">
+                Ubicación:
+              </p>
+              {ubicacion ? (
+                <GiEntryDoor size={110} color="#3D3736" />
+              ) : (
+                <GiExitDoor size={110} color="#3D3736" />
+              )}
               <p className="text-lg font-medium text-slate-700">
-                Ubicación: {ubicacion ? "Fuera" : "Dentro"}
+                {ubicacion ? "Fuera" : "Dentro"}
               </p>
             </div>
-          </div>
+
+            {/* Resto de los elementos en la misma fila */}
+            <div className="flex items-center flex-col col-span-1">
+              <p className="text-lg font-bold font-serif text-slate-700">
+                Temperatura:
+              </p>
+              <LiaTemperatureHighSolid size={110} color="#3D3736" />
+              <p className="text-lg font-medium text-slate-700">
+                {petDoorData.temperatura} C°
+              </p>
+            </div>
+          </div>      
         ) : (
           <p className="text-sm font-medium text-red-500">
             Cargando datos del dispositivo IoT...
@@ -299,16 +336,16 @@ const DispositivoIoT = () => {
         <form onSubmit={handleSubmit} className="mt-4">
           <label
             htmlFor="newClosingTime"
-            className="block text-lg font-medium text-slate-700 p-3"
+            className="block text-2xl font-bold text-sky-900 text-center pb-5 pt-5"
           >
-            *En cuanto se mande la hora se cerrará y abrirá hasta esa hora la
-            puerta*
+            Nueva Hora de Cierre (Formato 24 horas):
           </label>
           <label
             htmlFor="newClosingTime"
-            className="block text-lg font-medium text-slate-700 text-center pb-5"
+            className="block text-base text-center font-medium text-slate-700 p-3"
           >
-            Nueva Hora de Cierre (Formato 24 horas):
+            *En cuanto se mande la hora se cerrará y abrirá hasta esa hora la
+            puerta*
           </label>
           <input
             type="text"
@@ -322,7 +359,7 @@ const DispositivoIoT = () => {
           />
           <button
             type="submit"
-            className="btn bg-teal-700 rounded-lg p-2 w-full mt-2 hover:bg-teal-500"
+            className="btn bg-teal-600 rounded-lg p-2 w-full mt-2 hover:bg-teal-700 hover:font-medium"
             disabled={!newClosingTime || isLoading}
           >
             {isLoading ? "Enviando..." : "Actualizar Hora de Cierre"}
@@ -332,7 +369,7 @@ const DispositivoIoT = () => {
         {/* Botón para desbloquear */}
         <button
           onClick={sendUnlockTimeToBackend}
-          className="btn bg-red-700 rounded-lg p-2 w-full mt-2 hover:bg-red-500"
+          className="btn bg-red-600 rounded-lg p-2 w-full mt-2 hover:bg-red-700 hover:font-medium"
           disabled={isLoading}
         >
           {isLoading ? "Enviando..." : "Desbloquear"}
